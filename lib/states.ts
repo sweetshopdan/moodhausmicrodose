@@ -87,6 +87,16 @@ export const SHIFT_INTENSITY_DESCRIPTIONS: Record<number, string> = {
   10: 'full send — maximum intensity',
 }
 
+export const TO_OPTIONS = SHIFT_OPTIONS
+export const TO_SCALE_DESCRIPTIONS = SHIFT_INTENSITY_DESCRIPTIONS
+
+export const FROM_STATES = MENTAL_STATE_OPTIONS.map(s => ({
+  ...s,
+  type: (['steady', 'sharp', 'great'].includes(s.id) ? 'positive' : 'negative') as 'positive' | 'negative',
+  scaleLabel: ({ anxious: 'how anxious?', scattered: 'how scattered?', flat: 'how flat?', wired_tired: 'how wired-tired?', steady: 'how steady?', sharp: 'how sharp?', great: 'how great?' } as Record<string, string>)[s.id] ?? '',
+  descriptions: MENTAL_INTENSITY_DESCRIPTIONS[s.id] ?? {},
+}))
+
 export const SLEEP_OPTIONS = [
   { id: 'terrible' as const, label: 'Terrible' },
   { id: 'broken' as const, label: 'Broken' },
